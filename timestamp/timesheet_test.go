@@ -31,7 +31,7 @@ type Timesheet struct {
 
 func (t Timesheet) Record(s string) {
 	result := "Late"
-	if t.Now() < 9 {
+	if t.Now() <= 9 {
 		result = "OnTime"
 	}
 
@@ -54,5 +54,14 @@ func TestNoomComeToOfficeAt10AMThatLateAfter9AM(t *testing.T) {
 
 func TestPackComeToOfficeAt10AMThatLateAfter9AM(t *testing.T) {
 	timesheet := Timesheet{H: (fakeTime{10})}
+	timesheet.Record("PACK")
+}
+
+func TestOnTimeAt9AM(t *testing.T) {
+	timesheet := Timesheet{H: fakeTime{hour: 9}}
+	timesheet.Record("PHAK")
+}
+func TestOnTimeAt14AM(t *testing.T) {
+	timesheet := Timesheet{H: fakeTime{hour: 14}}
 	timesheet.Record("PACK")
 }
