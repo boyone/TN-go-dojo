@@ -1,8 +1,8 @@
 package timestamp
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 	"time"
 )
 
@@ -13,15 +13,16 @@ type H interface {
 type realTime struct {
 }
 
-func (r realTime) Hour() int {
+func (r realTime) Hour(s string) int {
 	return time.Now().Hour()
 }
 
 type fakeTime struct {
+	hour int
 }
 
 func (f fakeTime) Hour() int {
-	return 8
+	return f.hour
 }
 
 type Timesheet struct {
@@ -42,8 +43,11 @@ func (t Timesheet) Now() int {
 }
 
 func TestOnTimeBefore9AM(t *testing.T) {
-	timesheet := Timesheet{H: new(fakeTime)}
-	//timesheet := Timesheet{H: new(realTime)}
-
+	timesheet := Timesheet{H: (fakeTime{8})}
 	timesheet.Record("KWAN")
+}
+
+func TestNoomComeToOfficeAt10AMThatLateAfter9AM(t *testing.T) {
+	timesheet := Timesheet{H: (fakeTime{10})}
+	timesheet.Record("NOOM")
 }
