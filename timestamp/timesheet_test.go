@@ -55,5 +55,11 @@ func TestOnTimeAt9AM(t *testing.T) {
 	timesheet := Timesheet{H: fakeTime{hour:9}}
 	//timesheet := Timesheet{H: new(realTime)}
 
-	timesheet.Record("Pak")
+	timesheet.Record("PHAK")
+}
+func TestOnTimeAt14AM(t *testing.T) {
+	timesheet := Timesheet{H: fakeTime{hour:14}}
+	//timesheet := Timesheet{H: new(realTime)}
+
+	timesheet.Record("PACK")
 }
