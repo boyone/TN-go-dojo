@@ -51,3 +51,8 @@ func TestNoomComeToOfficeAt10AMThatLateAfter9AM(t *testing.T) {
 	timesheet := Timesheet{H: (fakeTime{10})}
 	timesheet.Record("NOOM")
 }
+
+func TestPackComeToOfficeAt10AMThatLateAfter9AM(t *testing.T) {
+	timesheet := Timesheet{H: (fakeTime{10})}
+	timesheet.Record("PACK")
+}
